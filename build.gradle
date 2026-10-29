@@ -33,8 +33,8 @@ dependencies {
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	// GeckoLib only
-	modImplementation "com.geckolib:geckolib-fabric-26.3:${project.geckolib_version}"
+	// GeckoLib
+	implementation "com.geckolib:geckolib-fabric-26.3:${project.geckolib_version}"
 }
 
 processResources {
