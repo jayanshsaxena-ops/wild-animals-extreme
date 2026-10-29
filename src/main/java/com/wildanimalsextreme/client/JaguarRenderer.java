@@ -2,7 +2,7 @@ package com.wildanimalsextreme.client;
 
 import com.wildanimalsextreme.entity.JaguarEntity;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import software.bernie.geckolib.renderer.GeoEntityRenderer;
+import com.geckolib.renderer.GeoEntityRenderer;
 
 public class JaguarRenderer extends GeoEntityRenderer<JaguarEntity> {
 

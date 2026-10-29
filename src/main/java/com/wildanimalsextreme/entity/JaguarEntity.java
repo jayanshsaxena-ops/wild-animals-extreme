@@ -1,5 +1,8 @@
 package com.wildanimalsextreme.entity;
 
+import com.wildanimalsextreme.registry.ModEntities;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -8,19 +11,19 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animation.AnimatableManager;
-import software.bernie.geckolib.animation.AnimationController;
-import software.bernie.geckolib.animation.PlayState;
-import software.bernie.geckolib.animation.RawAnimation;
-import software.bernie.geckolib.util.GeckoLibUtil;
+import org.jetbrains.annotations.Nullable;
+import com.geckolib.animatable.GeoEntity;
+import com.geckolib.animatable.instance.AnimatableInstanceCache;
+import com.geckolib.animation.AnimatableManager;
+import com.geckolib.animation.AnimationController;
+import com.geckolib.animation.PlayState;
+import com.geckolib.animation.RawAnimation;
+import com.geckolib.util.GeckoLibUtil;
 
 public class JaguarEntity extends Animal implements GeoEntity {
 
 	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-	// Animation names must match the ones in your jaguar.animation.json
 	private static final RawAnimation IDLE   = RawAnimation.begin().thenLoop("animation.jaguar.idle");
 	private static final RawAnimation WALK   = RawAnimation.begin().thenLoop("animation.jaguar.walk");
 	private static final RawAnimation RUN    = RawAnimation.begin().thenLoop("animation.jaguar.run");
@@ -55,7 +58,6 @@ public class JaguarEntity extends Animal implements GeoEntity {
 				return state.setAndContinue(ATTACK);
 			}
 			if (state.isMoving()) {
-				// simple speed check for run vs walk
 				if (this.getDeltaMovement().horizontalDistanceSqr() > 0.04) {
 					return state.setAndContinue(RUN);
 				}
@@ -70,7 +72,12 @@ public class JaguarEntity extends Animal implements GeoEntity {
 		return this.cache;
 	}
 
-	// No breeding for now (can be added later)
+	@Nullable
+	@Override
+	public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
+		return ModEntities.JAGUAR.create(level);
+	}
+
 	@Override
 	public boolean isFood(net.minecraft.world.item.ItemStack stack) {
 		return false;
