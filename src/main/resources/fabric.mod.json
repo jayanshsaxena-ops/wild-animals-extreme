@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "wild_animals_extreme",
+	"version": "${version}",
+	"name": "Wild Animals Extreme",
+	"description": "Adds extreme wildlife to Minecraft powered by GeckoLib. First animal: Jaguar!",
+	"authors": [
+		"Jayansh Saxena"
+	],
+	"contact": {
+		"homepage": "https://github.com/yourusername/wild-animals-extreme",
+		"sources": "https://github.com/yourusername/wild-animals-extreme"
+	},
+	"license": "MIT",
+	"icon": "assets/wild_animals_extreme/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.wildanimalsextreme.WildAnimalsExtreme"
+		],
+		"client": [
+			"com.wildanimalsextreme.client.WildAnimalsExtremeClient"
+		]
+	},
+	"mixins": [
+		"wild_animals_extreme.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.20.1",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*",
+		"geckolib": "*"
+	}
+}
